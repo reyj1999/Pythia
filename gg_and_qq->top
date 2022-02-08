@@ -1,0 +1,35 @@
+// Headers and Namespaces.
+#include "Pythia8/Pythia.h" // Include Pythia headers.
+using namespace Pythia8;    // Let Pythia8:: be implicit.
+
+// Begin main program
+int main(){
+  // Set up generation
+  Pythia gen;
+  gen.readString("Top::gg2ttbar = on"); // Switch on process.
+  gen.readString("Top::qqbar2ttbar = on");
+  gen.readString("Beams:eCM = 8000."); // 8 TeV CM energy.
+  gen.readString("Next:numberShowEvent = 5");
+  gen.init(); // Initialize; incoming pp beams is default.
+  Hist pT("top transverse momentum", 100, 0., 200.);
+  Hist eta("top psuedorapidity", 100, -5., 5.);
+  // Generate event(s).
+  int iTop = 0;
+  const int iEvent = 1;
+  for (int i = 0; i < iEvent; ++i){
+    gen.next(); // Generate an(other)event. Fill event record.
+  for (int j = 0; j < gen.event.size(); ++j){
+    cout << "i = " << j << ", id = " << gen.event[j].id() << endl;
+  if (gen.event[j].id() == 6) iHiggs =j;
+  pT.fill(gen.event[iTop].pT());
+  eta.fill(gen.event[iTop].eta());
+  }
+  cout << "iTop = " << iTop << endl;
+  cout << "Transverse momentum = " << gen.event[iTop].pT() << endl;
+  cout << "Psuedorapidity = " << gen.event[iTop].eta() << endl;
+  cout << "True rapidity = " << gen.event[iTop].y() << endl;
+  cout << pT << eta;
+}
+gen.stat();
+return 0;
+}
