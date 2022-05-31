@@ -78,6 +78,10 @@ int main(){
   // Declare Pythia object
   Pythia8::Pythia gen;
   // Specify the particle collision
+  gen.readString("SoftQCD:all = off");
+  gen.readString("HardQCD:all = off");
+  gen.readString("PDF:pSet = 8");
+  // Specify the particle collision
   gen.readString("Beams:idA = 2212");
   gen.readString("Beams:idB = 2212");
   // Set CM energy to 13 TeV
@@ -87,14 +91,15 @@ int main(){
   // Force H -> TauTau
   gen.readString("25:onMode = off");
   gen.readString("25:8:onMode = on");
-  // Only allow 3 prong decays
+  // Select Tau decays
   gen.readString("15:onMode = off");
   gen.readString("15:10:onMode = on");
-  gen.readString("15:21:onMode = on");
-  gen.readString("15:23:onMode = on");
-  gen.readString("15:26:onMode = on");
-  gen.readString("15:29:onMode = on");
-  gen.readString("15:35:onMode = on");
+  gen.readString("211:onMode = off");
+  gen.readString("111:onMode = off");
+  gen.readString("PartonLevel:FSR = off");
+  gen.readString("PartonLevel:ISR = off");
+  gen.readString("25:onMode = off");
+  gen.readString("25:8:onMode = on");
   
   //pythia.readString("15:onIfMatch = -211 -211 211");
   const int iEvent = 1;
