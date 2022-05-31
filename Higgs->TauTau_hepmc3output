@@ -102,7 +102,7 @@ int main(){
   gen.readString("25:8:onMode = on");
   
   //pythia.readString("15:onIfMatch = -211 -211 211");
-  const int iEvent = 1;
+  const int iEvent = 100;
   const int iHiggs = 0;
   gen.readString("Next:numberShowEvent = 1");
   
